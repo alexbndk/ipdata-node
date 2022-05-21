@@ -1,7 +1,8 @@
 import isString from 'lodash/isString';
 import isArray from 'lodash/isArray';
 import isIP from 'is-ip';
-import axios, { AxiosError } from 'axios';
+import axios, { AxiosError, AxiosInstance } from 'axios';
+import fetchAdapter from '@vespaiach/axios-fetch-adapter';
 import urljoin from 'url-join';
 import LRU from 'lru-cache';
 
@@ -130,6 +131,7 @@ interface IPDataParams {
 }
 
 export default class IPData {
+  axios?: AxiosInstance;
   apiKey?: string;
   cache?: LRU<string, LookupResponse>;
 
@@ -138,6 +140,9 @@ export default class IPData {
       throw new Error('An API key is required.');
     }
 
+    this.axios = axios.create({
+      adapter: fetchAdapter,
+    });
     this.apiKey = apiKey;
     this.cache = new LRU<string, LookupResponse>({ max: CACHE_MAX, maxAge: CACHE_MAX_AGE, ...cacheConfig });
   }
@@ -167,7 +172,7 @@ export default class IPData {
     }
 
     try {
-      const response = await axios.get(url, { params });
+      const response = await this.axios.get(url, { params });
       let data = { ...response.data, status: response.status };
 
       if (selectField) {
@@ -212,7 +217,7 @@ export default class IPData {
 
     try {
       if (bulk.length > 0) {
-        const response = await axios.post(urljoin(BASE_URL, 'bulk'), bulk, { params });
+        const response = await this.axios.post(urljoin(BASE_URL, 'bulk'), bulk, { params });
         response.data.forEach(info => {
           this.cache.set(info.ip, { ...info, status: response.status });
           responses.push(this.cache.get(info.ip));

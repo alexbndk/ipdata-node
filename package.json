@@ -1,6 +1,6 @@
 {
   "name": "ipdata",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "JavaScript library to gather information for an ip using https://ipdata.co.",
   "main": "./lib/ipdata.js",
   "scripts": {
@@ -20,7 +20,8 @@
   },
   "homepage": "https://github.com/thomasconner/ipdata-js-library#readme",
   "dependencies": {
-    "axios": "^0.19.0",
+    "@vespaiach/axios-fetch-adapter": "^0.3.0",
+    "axios": "^0.27.2",
     "is-ip": "^3.1.0",
     "lodash": "^4.17.15",
     "lru-cache": "^5.1.1",
@@ -39,13 +40,13 @@
     "dotenv-cli": "^3.0.0",
     "eslint": "^6.5.1",
     "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-jest": "^23.0.2",
     "eslint-config-prettier": "^6.4.0",
     "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^23.0.2",
     "eslint-plugin-prettier": "^3.1.1",
-    "jest": "^24.9.0",
+    "jest": "^28.1.0",
     "prettier": "^1.18.2",
-    "ts-jest": "^24.1.0",
+    "ts-jest": "^28.0.2",
     "typescript": "^3.7.2"
   },
   "files": [
