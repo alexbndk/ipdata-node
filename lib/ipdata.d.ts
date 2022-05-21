@@ -1,3 +1,4 @@
+import { AxiosInstance } from 'axios';
 import LRU from 'lru-cache';
 export interface CacheConfig {
     max?: number;
@@ -58,6 +59,7 @@ export interface LookupResponse {
     status: number;
 }
 export default class IPData {
+    axios?: AxiosInstance;
     apiKey?: string;
     cache?: LRU<string, LookupResponse>;
     constructor(apiKey: string, cacheConfig?: CacheConfig);
