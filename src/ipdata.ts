@@ -1,5 +1,3 @@
-import isString from 'lodash/isString';
-import isArray from 'lodash/isArray';
 import isIP from 'is-ip';
 import axios, { AxiosError, AxiosInstance } from 'axios';
 import fetchAdapter from '@vespaiach/axios-fetch-adapter';
@@ -53,7 +51,7 @@ function isValidSelectField(field: string): boolean {
 }
 
 function isValidFields(fields: string[]): boolean {
-  if (!isArray(fields)) {
+  if (fields?.length === undefined) {
     throw new Error('Fields should be an array.');
   }
 
@@ -136,7 +134,7 @@ export default class IPData {
   cache?: LRU<string, LookupResponse>;
 
   constructor(apiKey: string, cacheConfig?: CacheConfig) {
-    if (!isString(apiKey)) {
+    if (!apiKey) {
       throw new Error('An API key is required.');
     }
 

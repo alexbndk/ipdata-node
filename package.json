@@ -1,6 +1,6 @@
 {
   "name": "ipdata",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "JavaScript library to gather information for an ip using https://ipdata.co.",
   "main": "./lib/ipdata.js",
   "scripts": {
@@ -23,7 +23,6 @@
     "@vespaiach/axios-fetch-adapter": "^0.3.0",
     "axios": "^0.27.2",
     "is-ip": "^3.1.0",
-    "lodash": "^4.17.15",
     "lru-cache": "^5.1.1",
     "tslib": "^1.10.0",
     "url-join": "^4.0.1"
